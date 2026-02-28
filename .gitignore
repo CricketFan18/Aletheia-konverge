@@ -1,0 +1,21 @@
+# Python Core
+__pycache__/
+*.py[cod]
+*$py.class
+venv/
+env/
+.venv/
+.conda/
+.env
+
+# Environment Variables
+
+# OS Generated
+.DS_Store
+Thumbs.db
+
+# IDEs
+.vscode/
+.idea/
+dataset/
+saved_images/
