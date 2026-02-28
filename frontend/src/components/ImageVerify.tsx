@@ -15,7 +15,6 @@ interface VerifyResult {
   };
 }
 
-// 1. Define the demo samples mapping to your public/samples folder
 const DEMO_SAMPLES = [
   { id: 1, label: "REAL", src: "/samples/real1.jpg", name: "real_demo_1.jpg" },
   { id: 2, label: "REAL", src: "/samples/real2.jpg", name: "real_demo_2.jpg" },
@@ -40,7 +39,6 @@ export default function ImageVerify() {
     };
   }, [imagePreview]);
 
-  // 2. Centralized analysis function for both uploads and sample clicks
   const analyzeFile = async (selectedFile: File) => {
     setFile(selectedFile);
     
@@ -79,7 +77,6 @@ export default function ImageVerify() {
     }
   };
 
-  // Handler for manual uploads
   const handleFileChange = async (e: ChangeEvent<HTMLInputElement>) => {
     const selectedFile = e.target.files?.[0];
     if (!selectedFile) return;
@@ -94,11 +91,9 @@ export default function ImageVerify() {
     await analyzeFile(selectedFile);
   };
 
-  // 3. Handler for demo gallery clicks
   const handleSampleClick = async (sample: typeof DEMO_SAMPLES[0]) => {
     try {
       setLoading(true);
-      // Fetch the image from the public folder and convert it to a File object
       const response = await fetch(sample.src);
       const blob = await response.blob();
       const demoFile = new File([blob], sample.name, { type: blob.type });
