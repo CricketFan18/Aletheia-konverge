@@ -95,5 +95,5 @@ for epoch in range(epochs):
           f"Val Loss: {val_loss/len(val_loader):.4f} | Val Acc: {val_acc:.2f}%")
 
 # Save the final model weights in the root directory
-torch.save(model.state_dict(), "efficientnet_b0_deepfake.pth")
-print("Model Weights Saved Successfully to 'efficientnet_b0_deepfake.pth'!")
+torch.save(model.state_dict(), "base_model.pth")
+print("Model Weights Saved Successfully to 'base_model.pth'!")
