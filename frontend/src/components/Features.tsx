@@ -1,8 +1,8 @@
 export default function Features() {
-  const features = [
-    { title: "AI-Powered Detection", desc: "Our neural networks identify microscopic inconsistencies in pixel patterns.", icon: "🤖" },
-    { title: "Lightning Fast", desc: "Distributed GPU processing delivers comprehensive results in under 2 seconds.", icon: "⚡" },
-    { title: "Metadata Analysis", desc: "Deep dive into EXIF data and file structures to find hidden tampering history.", icon: "📊" },
+const features = [
+    { title: "GAN-Focused Detection", desc: "Our neural networks identify microscopic inconsistencies in pixel patterns and facial warping.", icon: "🤖" },
+    { title: "Lightning Fast API", desc: "Local EfficientNet processing delivers comprehensive visual and metadata results instantly.", icon: "⚡" },
+    { title: "Metadata Fallback", desc: "Deep dive into EXIF data structure. Automatically flags images stripped of camera data by modern AI generators.", icon: "📊" },
   ];
 
   return (

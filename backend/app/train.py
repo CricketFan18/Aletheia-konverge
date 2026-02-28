@@ -6,11 +6,10 @@ from torch.utils.data import DataLoader
 import os
 import time
 
-# 1. Hardware Setup (Optimized for 4GB VRAM)
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 print(f"Training on: {device}")
 
-# 2. Data Preprocessing
+# Data Preprocessing
 # EfficientNet-B0 expects 224x224 inputs
 transform = transforms.Compose([
     transforms.Resize(256),
@@ -20,16 +19,14 @@ transform = transforms.Compose([
     transforms.Normalize([0.485, 0.456, 0.406], [0.229, 0.224, 0.225])
 ])
 
-# Load Datasets using your exact directory structure
 # ImageFolder automatically maps 'Fake' to 0 and 'Real' to 1 (alphabetical)
 train_dataset = datasets.ImageFolder('dataset/Train', transform=transform)
 val_dataset = datasets.ImageFolder('dataset/Validation', transform=transform)
 
-# Batch size 16 is safe for 4GB VRAM. Do not increase this.
 train_loader = DataLoader(train_dataset, batch_size=16, shuffle=True)
 val_loader = DataLoader(val_dataset, batch_size=16, shuffle=False)
 
-# 3. Model Setup (EfficientNet-B0)
+# Model Setup (EfficientNet-B0)
 model = models.efficientnet_b0(weights='DEFAULT')
 
 # Freeze the base layers for rapid hackathon training
@@ -94,6 +91,5 @@ for epoch in range(epochs):
           f"Train Loss: {running_loss/len(train_loader):.4f} | "
           f"Val Loss: {val_loss/len(val_loader):.4f} | Val Acc: {val_acc:.2f}%")
 
-# Save the final model weights in the root directory
 torch.save(model.state_dict(), "base_model.pth")
 print("Model Weights Saved Successfully to 'base_model.pth'!")

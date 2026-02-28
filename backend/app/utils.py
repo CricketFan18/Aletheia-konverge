@@ -4,7 +4,6 @@ import base64
 from PIL import Image, ImageChops, ImageEnhance
 import io
 
-# FIX: Accept PIL Image directly instead of a file path
 def generate_ela_heatmap(original: Image.Image, quality: int = 90) -> str:
     """
     Generates an Error Level Analysis heatmap and returns it as a Base64 string.
@@ -20,12 +19,11 @@ def generate_ela_heatmap(original: Image.Image, quality: int = 90) -> str:
         # Calculate the absolute difference between original and compressed
         ela_image = ImageChops.difference(original, compressed)
         
-        # FIX: Use a static scaling factor (e.g., 20.0) instead of maximizing tiny artifacts.
         # This prevents 100% real images from blowing out into glowing messes.
         scale_factor = 20.0 
         ela_image = ImageEnhance.Brightness(ela_image).enhance(scale_factor)
         
-        # Convert to a color map (Heatmap style: Inferno)
+        # Convert to a color map
         ela_cv = cv2.cvtColor(np.array(ela_image), cv2.COLOR_RGB2BGR)
         ela_cv = cv2.applyColorMap(ela_cv, cv2.COLORMAP_INFERNO)
         
